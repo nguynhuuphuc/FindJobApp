@@ -25,6 +25,10 @@ export const style = StyleSheet.create({
   mb16: {
     marginBottom: 16,
   },
+
+  pBottom8: {
+    paddingBottom: 16,
+  },
   btn: {
     padding: 8,
     borderRadius: 12,
@@ -63,6 +67,9 @@ export const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
+  containerScroll: {
+    flex: 1,
+  },
   btnSelected: {
     backgroundColor: '#2f2650',
   },
@@ -85,8 +92,6 @@ export const style = StyleSheet.create({
   //Apply for job
   containerApplyForJob: {
     flexDirection: 'row',
-    position: 'absolute',
-    bottom: 0,
     backgroundColor: 'white',
   },
   btnHeart: {
@@ -105,5 +110,8 @@ export const style = StyleSheet.create({
     justifyContent: 'center',
     padding: 16,
     borderRadius: 16,
+  },
+  bottomSpace: {
+    height: 20,
   },
 });

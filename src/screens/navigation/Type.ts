@@ -11,6 +11,7 @@ export type RootParams = {
     job_city: string;
     job_state: string;
     job_country: string;
+    job_google_link: string;
     job_highlights: {
       Qualifications: [];
       Responsibilities: [];

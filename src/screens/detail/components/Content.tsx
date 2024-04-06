@@ -20,8 +20,8 @@ enum tabSelected {
 export default function Content({content}: PropsContent) {
   const [btnSelected, setBtnSelect] = useState(tabSelected.DESC);
   const [dataContent, setDataContent] = useState(content.Qualifications ?? []);
-  const renderDataContent = (value: any) => {
-    return <Text>{value}</Text>;
+  const renderDataContent = (item: any, index: number) => {
+    return <Text key={index}>{item}</Text>;
   };
 
   const onPress = (value: tabSelected) => {
@@ -40,7 +40,7 @@ export default function Content({content}: PropsContent) {
     }
   };
   return (
-    <ScrollView style={[style.mt16]}>
+    <ScrollView style={[style.mt16, style.containerScroll]}>
       <View style={[style.containerContent]}>
         <TouchableOpacity
           style={[
@@ -99,8 +99,9 @@ export default function Content({content}: PropsContent) {
           style.mr16,
         ]}>
         <Text style={[style.itemTitle, style.mb16]}>{btnSelected}</Text>
-        {dataContent.map(value => renderDataContent(value))}
+        {dataContent.map((item, index) => renderDataContent(item, index))}
       </View>
+      <View style={[style.bottomSpace]}></View>
     </ScrollView>
   );
 }

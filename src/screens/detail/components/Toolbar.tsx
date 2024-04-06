@@ -1,4 +1,4 @@
-import {View, Text, Image, SafeAreaView} from 'react-native';
+import {View, Text, Image, SafeAreaView, Share} from 'react-native';
 import React from 'react';
 import {style} from '../Style';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -6,6 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 import {PropsStackDetail} from '../../navigation/Type';
 
 export type PropsParam = {
+  link: string;
   url: string;
   jobTitle: string;
   location: string;
@@ -13,6 +14,7 @@ export type PropsParam = {
 };
 
 export default function Toolbar({
+  link,
   url,
   jobTitle,
   location,
@@ -24,6 +26,23 @@ export default function Toolbar({
   const companyIcon = require('../../../assets/icons/company/company.png');
   const locationOnIcon = require('../../../assets/icons/location_on/outline_location_on.png');
 
+  const handleShare = async (link: string) => {
+    try {
+      const result = await Share.share({
+        message: link,
+      });
+      if (result.action === Share.sharedAction) {
+        // Share was successful
+        console.log('Share was successful');
+      } else if (result.action === Share.dismissedAction) {
+        // Share was dismissed
+        console.log('Share was dismissed');
+      }
+    } catch (error) {
+      console.error('Error sharing:', error);
+    }
+  };
+
   const onBackPress = () => {
     navigation.pop();
   };
@@ -33,7 +52,7 @@ export default function Toolbar({
         <TouchableOpacity style={[style.btn]} onPress={() => onBackPress()}>
           <Image style={[style.icon]} source={arrowBackIcon} />
         </TouchableOpacity>
-        <TouchableOpacity style={[style.btn]}>
+        <TouchableOpacity style={[style.btn]} onPress={() => handleShare(link)}>
           <Image style={[style.icon]} source={shareIcon} />
         </TouchableOpacity>
       </View>

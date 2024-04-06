@@ -8,13 +8,13 @@ import {PropsRouteDetail} from '../navigation/Type';
 
 export default function DetailPage() {
   const params = useRoute<PropsRouteDetail>().params;
-  let address =
-    params.job_city + ', ' + params.job_state + ', ' + params.job_country;
+
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, flexDirection: 'column'}}>
       <Toolbar
+        link={params.job_google_link}
         url={params.employer_logo}
-        country={address}
+        country={params.job_country}
         jobTitle={params.job_title}
         location={params.job_publisher}
       />
